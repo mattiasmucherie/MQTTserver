@@ -1,8 +1,10 @@
 const mqtt = require("mqtt");
 var express = require("express");
 var bodyParser = require("body-parser");
-var app = express();
+const path = require("path");
 
+var app = express();
+const router = express.Router();
 class MqttHandler {
   constructor() {
     this.mqttClient = null;
@@ -44,7 +46,7 @@ class MqttHandler {
 
   // Sends a mqtt message to topic: mytopic
   sendMessage(message) {
-    this.mqttClient.publish("mytopic", message);
+    this.mqttClient.publish("test", message);
   }
 }
 
@@ -55,9 +57,18 @@ var mqttClient = new MqttHandler();
 mqttClient.connect();
 
 // Routes
+
 app.post("/send-mqtt", function(req, res) {
-  mqttClient.sendMessage(req.body.message);
+  if (req.body.message) {
+    mqttClient.sendMessage(req.body.message);
+  }
+  // console.log(req.body.message);
+  // mqttClient.sendMessage(req.body.message);
   res.status(200).send("Message sent to mqtt");
+});
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname + "/index.html"));
 });
 
 var server = app.listen(3000, function() {
