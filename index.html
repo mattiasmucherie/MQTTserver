@@ -14,7 +14,7 @@
     <script>
       async function handleClick(e) {
         try {
-          const data = { message: e.originalTarget.innerHTML };
+          const data = { message: e.srcElement.innerHTML };
           console.log(data);
           const response = await fetch("/send-mqtt", {
             method: "POST",
