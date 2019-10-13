@@ -4,12 +4,12 @@ var bodyParser = require("body-parser");
 const path = require("path");
 
 var app = express();
-const router = express.Router();
+app.use(express.static(path.join(__dirname, "/index.html")));
 class MqttHandler {
   constructor() {
     this.mqttClient = null;
     this.host = "mqtt://farmer.cloudmqtt.com:15554";
-    this.username = "uebojplm"; // mqtt credentials if these are needed to connect
+    this.username = "uebojplm";
     this.password = "OKy_58VmsWX9";
   }
 
