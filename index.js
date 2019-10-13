@@ -53,7 +53,7 @@ class MqttHandler {
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
+app.use(morgan("combined"));
 var mqttClient = new MqttHandler();
 mqttClient.connect();
 
