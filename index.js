@@ -5,6 +5,7 @@ const path = require("path");
 
 var app = express();
 app.use(express.static(path.join(__dirname, "/index.html")));
+const port = process.env.PORT || 3000;
 class MqttHandler {
   constructor() {
     this.mqttClient = null;
@@ -71,6 +72,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/index.html"));
 });
 
-var server = app.listen(3000, function() {
+var server = app.listen(port, function() {
   console.log("app running on port.", server.address().port);
 });
