@@ -1,7 +1,8 @@
 const mqtt = require("mqtt");
-var express = require("express");
-var bodyParser = require("body-parser");
+const express = require("express");
+const bodyParser = require("body-parser");
 const path = require("path");
+const morgan = require("morgan");
 
 var app = express();
 app.use(express.static(path.join(__dirname, "/index.html")));
